@@ -1,14 +1,14 @@
-function setBoxColor(color) {
-    document.getElementById('box').style.backgroundColor = color;
-}
+const $ = sel => document.querySelector(sel);
+const box = $('#box');
+const input = $('#color-input');
+const applyBtn = $('#apply-btn');
+const randomBtn = $('#random-btn');
 
-document.getElementById('apply-btn').addEventListener('click', function() {
-    const color = document.getElementById('color-input').value;
-    setBoxColor(color);
-});
+const setColor = c => box.style.backgroundColor = c;
 
-document.getElementById('random-btn').addEventListener('click', function() {
-    const color = '#' + Math.floor(Math.random() * 16777215)
-        .toString(16).padStart(6, '0');
-    setBoxColor(color);
+applyBtn.addEventListener('click', () => setColor(input.value));
+
+randomBtn.addEventListener('click', () => {
+  const color = `#${Math.floor(Math.random() * 0xffffff).toString(16).padStart(6,'0')}`;
+  setColor(color);
 });
